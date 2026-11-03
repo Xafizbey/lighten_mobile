@@ -1,0 +1,6 @@
+*.xcodeproj
+xcuserdata/
+DerivedData/
+build/
+.build/
+Lighten/Resources/Info.plist

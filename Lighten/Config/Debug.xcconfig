@@ -1,0 +1,5 @@
+// Runs from Xcode go to the production server, so no local setup is needed.
+// For `pnpm dev` on this Mac use http:/$()/localhost:3001 instead (simulator),
+// or the Mac's address in the same Wi-Fi on a real iPhone.
+// ("/$()/" keeps xcconfig from reading "//" as a comment.)
+LIGHTEN_BASE_URL = https:/$()/app.158-180-17-16.sslip.io

@@ -1,0 +1,3 @@
+// Production: the student cabinet's address (WEB_HOST in .env.prod), HTTPS only.
+// The server is on sslip.io until the school has a domain: change this then.
+LIGHTEN_BASE_URL = https:/$()/app.158-180-17-16.sslip.io
