@@ -1,24 +1,20 @@
 import SwiftUI
 
-/// The Lighten mark, concept A from docs/brand: a lowercase l with light at
-/// its tip. Provisional until the owner picks a concept.
+/// The Lighten mark: two speech bubbles and a light bulb on deep blue, the same
+/// drawing as the app icon (Resources/AppIcon.icon).
 struct LogoMark: View {
     var size: CGFloat = 64
 
     var body: some View {
-        let unit = size / 1024
-        ZStack {
-            RoundedRectangle(cornerRadius: size * 0.22).fill(Palette.onBright)
-            Circle().fill(Palette.yellow.opacity(0.16)).frame(width: 380 * unit)
-                .position(x: 512 * unit, y: 300 * unit)
-            Circle().fill(Palette.yellow.opacity(0.32)).frame(width: 256 * unit)
-                .position(x: 512 * unit, y: 300 * unit)
-            Circle().fill(Palette.yellow).frame(width: 164 * unit)
-                .position(x: 512 * unit, y: 300 * unit)
-            Capsule().fill(Color(hex: 0xEDF0FA)).frame(width: 112 * unit, height: 420 * unit)
-                .position(x: 512 * unit, y: 640 * unit)
-        }
-        .frame(width: size, height: size)
-        .accessibilityLabel(Strings.brand)
+        RoundedRectangle(cornerRadius: size * 0.22)
+            .fill(Color(.displayP3, red: 0.0808, green: 0.1526, blue: 0.2965))
+            .overlay(
+                Image("LogoGlyph")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(size * 0.17)
+            )
+            .frame(width: size, height: size)
+            .accessibilityLabel(Strings.brand)
     }
 }
