@@ -1,19 +1,19 @@
 import SwiftUI
 
-/// The Lighten mark: two speech bubbles and a light bulb on deep blue, the same
-/// drawing as the app icon (Resources/AppIcon.icon).
+/// The Lighten mark: a light bulb with an L, on an orange-to-yellow
+/// gradient. The same drawing as the app icon (Resources/AppIcon.icon).
 struct LogoMark: View {
     var size: CGFloat = 64
 
     var body: some View {
         RoundedRectangle(cornerRadius: size * 0.22)
-            .fill(Color(.displayP3, red: 0.0808, green: 0.1526, blue: 0.2965))
-            .overlay(
-                Image("LogoGlyph")
-                    .resizable()
-                    .scaledToFit()
-                    .padding(size * 0.17)
-            )
+            .fill(LinearGradient(
+                colors: [
+                    Color(.displayP3, red: 1, green: 0.3294, blue: 0.1686),
+                    Color(.displayP3, red: 1, green: 0.7373, blue: 0.1961),
+                ],
+                startPoint: .top, endPoint: .bottom))
+            .overlay(Image("LogoGlyph").resizable().scaledToFit())
             .frame(width: size, height: size)
             .accessibilityLabel(Strings.brand)
     }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<title>Lighten — foreground for Icon Composer</title>
+<desc>Transparent canvas, solid foreground. Letter L is a real hole. No background, gradients, filters, masks or embedded images.</desc>
+<g fill="#FF8A00">
+<path fill-rule="evenodd" d="M512 165 C367 165 250 278 246 419 C242 523 295 580 351 640 C369 660 379 677 387 699 C392 713 401 721 418 721 H606 C623 721 632 713 637 699 C645 677 655 660 673 640 C729 580 782 523 778 419 C774 278 657 165 512 165 Z M455 283 C480.957 283 502 304.043 502 330 V453 Q502 463 512 463 H601 C626.957 463 648 484.043 648 510 C648 535.957 626.957 557 601 557 H455 C429.043 557 408 535.957 408 510 V330 C408 304.043 429.043 283 455 283 Z"/>
+<rect x="391" y="736" width="242" height="62" rx="31"/>
+<rect x="420" y="812" width="184" height="56" rx="28"/>
+</g>
+</svg>
