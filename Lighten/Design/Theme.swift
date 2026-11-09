@@ -5,20 +5,35 @@ import UIKit
 /// outside this list.
 ///
 /// Text on a bright fill is always `onBright` (it does not change between
-/// themes). White text on green, blue or coral fails contrast: never use it.
+/// themes). White text on green, blue, rose or the action gradient fails
+/// contrast: never use it.
 enum Palette {
-    static let green = Color(hex: 0x2FBF71)       // primary action, correct answer
-    static let greenDeep = Color(hex: 0x1F8A50)   // thickness under a green button
+    /// The main action: the app icon's sunrise, yellow at the bottom to
+    /// red-orange at the top (decision of 9 November). The only gradient in
+    /// the system, and only on the primary button. Its label is `onBright`:
+    /// 4.7:1 at the red end, 9.6:1 at the yellow; white fails.
+    static let actionFrom = Color(hex: 0xFFB800)   // bottom
+    static let actionTo = Color(hex: 0xFF3F00)     // top
+    static let actionDeep = Color(hex: 0xD97706)   // thickness under the action button
+    static let action = LinearGradient(colors: [actionTo, actionFrom], startPoint: .top, endPoint: .bottom)
+
+    /// The dark behind the splash, the same as the system launch screen
+    /// (Assets: LaunchBackground), so the two meet without a flash.
+    static let splashBackground = Color("LaunchBackground")
+
+    static let green = Color(hex: 0x2FBF71)       // correct answer, progress. Not an action
+    static let greenDeep = Color(hex: 0x1F8A50)
     static let yellow = Color(hex: 0xFFD23F)
-    static let blue = Color(hex: 0x3A86FF)        // secondary action, live lessons
+    static let blue = Color(hex: 0x3A86FF)        // secondary action, selection, live lessons
     static let blueDeep = Color(hex: 0x2A63C4)
-    static let coral = Color(hex: 0xFF5A5F)       // mistake. Sparingly
-    static let coralDeep = Color(hex: 0xD13D42)
+    /// Mistake. Rose rather than coral, so it never looks like the red-orange action.
+    static let coral = Color(hex: 0xF2557A)
+    static let coralDeep = Color(hex: 0xC93A5C)
     static let onBright = Color(hex: 0x1B1B3A)
 
     static let greenText = Color(light: 0x15803D, dark: 0x4ADE80)
     static let blueText = Color(light: 0x2A63C4, dark: 0x93B8FF)
-    static let coralText = Color(light: 0xDC2626, dark: 0xFF9BA0)
+    static let coralText = Color(light: 0xC8264F, dark: 0xFF9BB5)
 
     static let ink = Color(light: 0x1B1B3A, dark: 0xEDF0FA)
     static let inkSoft = Color(light: 0x6A6F8C, dark: 0xA3AAC9)
@@ -32,17 +47,26 @@ enum Palette {
     static let blueTint = blue.opacity(0.12)
     static let coralTint = coral.opacity(0.14)
 
-    /// One fill per section, as on the site's home.
-    static func tone(_ section: SectionCode) -> Color {
+    /// A fill and the text that sits on it.
+    struct Tone {
+        let fill: Color
+        let text: Color
+    }
+
+    /// One look per section, the same as on the site
+    /// (apps/web/components/stories/sections.ts).
+    static func tone(_ section: SectionCode) -> Tone {
         switch section {
-        case .grammar: return blue
-        case .listening: return yellow
-        case .reading: return green
-        case .exercise: return coral
-        case .writing: return blue
-        case .speaking: return yellow
+        case .grammar: return Tone(fill: green, text: onBright)
+        case .listening: return Tone(fill: yellow, text: onBright)
+        case .reading: return Tone(fill: coral, text: onBright)
+        case .exercise: return Tone(fill: blue, text: onBright)
+        case .writing: return Tone(fill: onBright, text: Color(hex: 0xEDF0FA))   // dark plate
+        case .speaking: return Tone(fill: bg, text: ink)                          // paper
         }
     }
+
+    static func bright(_ fill: Color) -> Tone { Tone(fill: fill, text: onBright) }
 }
 
 /// Two typefaces (docs/dev-plan.md §6–7): the Russian interface in a rounded

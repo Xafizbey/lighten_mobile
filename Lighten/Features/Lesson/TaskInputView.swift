@@ -67,7 +67,7 @@ struct TaskInputView: View {
     }
 }
 
-/// One choice. Selected: green border and tint.
+/// One choice. Selected: blue border and tint, as on the site (green means "right").
 struct OptionButton: View {
     let text: String
     let selected: Bool
@@ -83,9 +83,9 @@ struct OptionButton: View {
                 .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
                 .padding(.horizontal, 16)
                 .background(RoundedRectangle(cornerRadius: Metrics.radius)
-                    .fill(selected ? Palette.greenTint : Palette.bg))
+                    .fill(selected ? Palette.blueTint : Palette.bg))
                 .overlay(RoundedRectangle(cornerRadius: Metrics.radius)
-                    .strokeBorder(selected ? Palette.green : Palette.line, lineWidth: selected ? 3 : 2))
+                    .strokeBorder(selected ? Palette.blue : Palette.line, lineWidth: selected ? 3 : 2))
         }
         .buttonStyle(.plain)
         .animation(Motion.snappy, value: selected)

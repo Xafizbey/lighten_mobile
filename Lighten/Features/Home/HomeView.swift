@@ -83,7 +83,7 @@ private struct MainStory: View {
             Story(tone: nil, kick: Strings.Home.soonKick, title: Strings.Home.soonTitle,
                   text: Strings.Home.noCourse)
         } else if !home.access.open {
-            Story(tone: Palette.coral, kick: Strings.Home.closedKick, title: Strings.Home.closedTitle,
+            Story(tone: Palette.bright(Palette.coral), kick: Strings.Home.closedKick, title: Strings.Home.closedTitle,
                   text: Strings.Home.accessClosed)
         } else if let week = home.current, let next = home.nextLesson {
             NavigationLink(value: Route.lesson(next.id)) {
@@ -101,7 +101,7 @@ private struct MainStory: View {
             .buttonStyle(.plain)
         } else if let week = home.current {
             NavigationLink(value: Route.week(week.id)) {
-                Story(tone: Palette.green, kick: fill(Strings.Home.weekDoneKick, ["n": week.position]),
+                Story(tone: Palette.bright(Palette.green), kick: fill(Strings.Home.weekDoneKick, ["n": week.position]),
                       title: Strings.Home.weekDoneTitle, text: Strings.Home.weekDoneText,
                       action: Strings.Home.toWeek)
             }
@@ -117,8 +117,8 @@ private struct MainStory: View {
 }
 
 private struct Story: View {
-    /// A bright fill, or nil for the page's own surface.
-    let tone: Color?
+    /// A fill with its text, or nil for the page's own surface.
+    let tone: Palette.Tone?
     let kick: String
     let title: String
     let text: String
@@ -140,10 +140,10 @@ private struct Story: View {
                 .padding(.top, 8)
             }
         }
-        .foregroundStyle(bright ? Palette.onBright : Palette.ink)
+        .foregroundStyle(tone?.text ?? Palette.ink)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(24)
-        .background(RoundedRectangle(cornerRadius: 24).fill(tone ?? Palette.bg))
+        .background(RoundedRectangle(cornerRadius: 24).fill(tone?.fill ?? Palette.bg))
         .overlay(RoundedRectangle(cornerRadius: 24).strokeBorder(Palette.line, lineWidth: bright ? 0 : 2))
     }
 }
@@ -186,10 +186,11 @@ private struct SectionRail: View {
             Text(Strings.section(s.section)).font(Typo.bodyBold)
             Text(state).font(Typo.caption)
         }
-        .foregroundStyle(Palette.onBright)
+        .foregroundStyle(Palette.tone(s.section).text)
         .frame(width: 128, height: 92, alignment: .topLeading)
         .padding(14)
-        .background(RoundedRectangle(cornerRadius: Metrics.radius).fill(Palette.tone(s.section)))
+        .background(RoundedRectangle(cornerRadius: Metrics.radius).fill(Palette.tone(s.section).fill))
+        .overlay(RoundedRectangle(cornerRadius: Metrics.radius).strokeBorder(Palette.line, lineWidth: 2))
     }
 }
 

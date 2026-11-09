@@ -2,8 +2,7 @@ import SwiftUI
 
 /// The main button: a raised face that sinks under the finger. One per screen.
 struct PrimaryButtonStyle: ButtonStyle {
-    var fill: Color = Palette.green
-    var deep: Color = Palette.greenDeep
+    var deep: Color = Palette.actionDeep
     @Environment(\.isEnabled) private var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
@@ -13,7 +12,8 @@ struct PrimaryButtonStyle: ButtonStyle {
             .foregroundStyle(Palette.onBright)
             .frame(maxWidth: .infinity, minHeight: Metrics.buttonHeight)
             .background(
-                RoundedRectangle(cornerRadius: Metrics.radius).fill(isEnabled ? fill : Palette.line)
+                RoundedRectangle(cornerRadius: Metrics.radius)
+                    .fill(isEnabled ? AnyShapeStyle(Palette.action) : AnyShapeStyle(Palette.line))
             )
             .offset(y: pressed ? Metrics.buttonDepth - 2 : 0)
             .background(

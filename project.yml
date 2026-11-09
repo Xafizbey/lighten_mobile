@@ -15,7 +15,7 @@ settings:
   base:
     SWIFT_VERSION: '5.10'
     MARKETING_VERSION: '1.0'
-    CURRENT_PROJECT_VERSION: '2'
+    CURRENT_PROJECT_VERSION: '3'
     # Your Apple Developer team. Set it here or in Xcode, Signing & Capabilities.
     DEVELOPMENT_TEAM: ''
 configs:
@@ -59,7 +59,7 @@ targets:
         # Where the student cabinet lives; the app calls its /api, like the site.
         LightenBaseURL: $(LIGHTEN_BASE_URL)
         UILaunchScreen:
-          UIColorName: AccentColor
+          UIColorName: LaunchBackground
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UIBackgroundModes:
